@@ -42,7 +42,7 @@ async def timeout_with_wait_for():
     try:
         # TODO: Use asyncio.wait_for to timeout after 0.2 seconds
         # The task takes 1 second but should timeout at 0.2s
-        result = None  # Replace this line
+        result = await asyncio.wait_for(slow_task(1, "task_A"), timeout=0.2)
         return result
     except asyncio.TimeoutError:
         print("  ✓ Caught TimeoutError from wait_for")
@@ -65,7 +65,8 @@ async def timeout_with_context_manager():
     
     try:
         # TODO: Use async with asyncio.timeout(0.2) to timeout
-        result = None  # Replace this line
+        async with asyncio.timeout(0.2):
+            result = await slow_task(1, "task_A")
         return result
     except TimeoutError:  # Note: TimeoutError, not asyncio.TimeoutError in 3.11+
         print("  ✓ Caught TimeoutError from context manager")

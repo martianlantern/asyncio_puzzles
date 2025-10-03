@@ -40,7 +40,7 @@ async def busy_worker(n):
         
         # TODO: Add your code here to yield control periodically
         # Replace this pass statement
-        pass
+        await asyncio.sleep(0)
         
     print("Busy work done!")
 

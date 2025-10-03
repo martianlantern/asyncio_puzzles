@@ -37,9 +37,9 @@ async def run_sequential():
     
     # TODO: Await each fetch one by one
     # Replace these lines:
-    pass
-    pass
-    pass
+    results.append(await fetch_data("A", 0.3))
+    results.append(await fetch_data("B", 0.1))
+    results.append(await fetch_data("C", 0.2))
     
     return results
 
@@ -55,6 +55,10 @@ async def run_concurrent():
     
     # TODO: Create tasks for each fetch and await them all
     # Hint: Create three tasks, then await them
-    pass
+    results += await asyncio.gather(
+        fetch_data("A", 0.3),
+        fetch_data("B", 0.1),
+        fetch_data("C", 0.2),
+    )
     
     return results

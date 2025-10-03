@@ -34,7 +34,11 @@ async def use_gather():
     
     # TODO: Use gather to run three tasks with delays: 0.3, 0.1, 0.2
     # Tasks: ("task_A", 0.3), ("task_B", 0.1), ("task_C", 0.2)
-    results = []  # Replace this
+    results = await asyncio.gather(
+        delayed_task("task_A", 0.3),
+        delayed_task("task_B", 0.1),
+        delayed_task("task_C", 0.2),
+    )
     
     return results
 
@@ -49,7 +53,13 @@ async def use_as_completed():
     
     # TODO: Use as_completed to iterate over tasks as they finish
     # Same tasks: ("task_A", 0.3), ("task_B", 0.1), ("task_C", 0.2)
-    results = []
+    results = [await coro for coro in asyncio.as_completed(
+        [
+            delayed_task("task_A", 0.3),
+            delayed_task("task_B", 0.1),
+            delayed_task("task_C", 0.2),
+        ]
+    )]
     
     # Hint: for coro in asyncio.as_completed([...]): result = await coro
     

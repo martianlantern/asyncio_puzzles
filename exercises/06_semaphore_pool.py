@@ -29,18 +29,20 @@ async def job(job_id, semaphore):
     
     # TODO: Use `async with semaphore:` to limit concurrency
     # Remove the pass and add proper semaphore usage
+
+    async with semaphore:
     
-    # Update counters
-    concurrent_jobs += 1
-    max_concurrent = max(max_concurrent, concurrent_jobs)
-    
-    print(f"  Job {job_id} started (concurrent: {concurrent_jobs})")
-    await asyncio.sleep(0.1)  # Simulate work
-    
-    concurrent_jobs -= 1
-    print(f"  Job {job_id} finished")
-    
-    return f"result_{job_id}"
+        # Update counters
+        concurrent_jobs += 1
+        max_concurrent = max(max_concurrent, concurrent_jobs)
+        
+        print(f"  Job {job_id} started (concurrent: {concurrent_jobs})")
+        await asyncio.sleep(0.1)  # Simulate work
+        
+        concurrent_jobs -= 1
+        print(f"  Job {job_id} finished")
+        
+        return f"result_{job_id}"
 
 
 async def run_jobs_with_limit(num_jobs, max_concurrent_jobs):
@@ -54,7 +56,7 @@ async def run_jobs_with_limit(num_jobs, max_concurrent_jobs):
     max_concurrent = 0
     
     # TODO: Create a semaphore with max_concurrent_jobs slots
-    semaphore = None  # Replace this
+    semaphore = asyncio.Semaphore(max_concurrent_jobs)
     
     # Create all job tasks
     tasks = [

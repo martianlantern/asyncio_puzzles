@@ -131,7 +131,7 @@ def main():
             break
     
     # Summary
-    total = passed + failed
+    total = 20
     if failed == 0:
         print(f"{Colors.GREEN}{Colors.BOLD}{'='*70}")
         print(f"🎉 All exercises passed! ({passed}/{total})")

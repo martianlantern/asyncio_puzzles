@@ -9,12 +9,12 @@ from pathlib import Path
 
 # Load the exercise module dynamically
 exercise_path = Path(__file__).parent.parent / "exercises" / "02_coroutines_vs_tasks.py"
-spec = importlib.util.ex02.spec_from_file_location("ex02", exercise_path)
-ex02 = importlib.util.ex02.module_from_spec(spec)
-spec.loader.ex02.exec_module(ex02)
+spec = importlib.util.spec_from_file_location("ex02", exercise_path)
+ex02 = importlib.util.module_from_spec(spec)
+spec.loader.exec_module(ex02)
 
 
-async def ex02.test():
+async def test():
     """Test both approaches and verify timing."""
     # Test sequential
     start = time.time()
@@ -41,4 +41,4 @@ async def ex02.test():
 
 
 if __name__ == "__main__":
-    asyncio.ex02.run(ex02.test())
+    asyncio.run(test())

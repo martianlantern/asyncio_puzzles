@@ -8,12 +8,12 @@ from pathlib import Path
 
 # Load the exercise module dynamically
 exercise_path = Path(__file__).parent.parent / "exercises" / "01_event_loop_basics.py"
-spec = importlib.util.ex01.spec_from_file_location("ex01", exercise_path)
-ex01 = importlib.util.ex01.module_from_spec(spec)
-spec.loader.ex01.exec_module(ex01)
+spec = importlib.util.spec_from_file_location("ex01", exercise_path)
+ex01 = importlib.util.module_from_spec(spec)
+spec.loader.exec_module(ex01)
 
 
-async def ex01.test():
+async def test():
     """Test that ticks appear during busy work (not all at the end)."""
     import time
     
@@ -23,15 +23,15 @@ async def ex01.test():
     tick_times = []
     
     # Create instrumented ticker
-    async def ex01.instrumented_ticker():
+    async def instrumented_ticker():
         for i in range(5):
-            tick_times.ex01.append(time.time() - start)
+            tick_times.append(time.time() - start)
             print(f"  tick {i}")
-            await asyncio.ex01.sleep(0.01)
+            await asyncio.sleep(0.01)
     
     # Run with instrumented ticker
-    ticker_task = asyncio.ex01.create_task(ex01.instrumented_ticker())
-    worker_task = asyncio.ex01.create_task(ex01.busy_worker(10000))
+    ticker_task = asyncio.create_task(instrumented_ticker())
+    worker_task = asyncio.create_task(ex01.busy_worker(10000))
     
     await ticker_task
     await worker_task
@@ -52,4 +52,4 @@ async def ex01.test():
 
 
 if __name__ == "__main__":
-    asyncio.ex01.run(ex01.test())
+    asyncio.run(test())

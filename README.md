@@ -99,3 +99,17 @@ async def run_concurrent():
 
 - [Python asyncio docs](https://docs.python.org/3/library/asyncio.html)
 - [PEP 492 - async/await](https://www.python.org/dev/peps/pep-0492/)
+
+## 🤝 Contributing - Adding New Puzzles
+
+Want to add a new puzzle? Follow this structure:
+
+```
+Add Exercise 21: Connection Pool
+
+- exercises/21_connection_pool.py (starter code)
+- tests/test_21_connection_pool.py (comprehensive tests)
+- README.md (updated table and map)
+```
+
+Happy puzzle creating!

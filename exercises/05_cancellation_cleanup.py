@@ -47,11 +47,15 @@ async def worker_with_resource(resource):
     # TODO: Add try/except/finally block to handle cancellation
     # The resource should be closed even if this coroutine is cancelled
     
-    await resource.open()
-    
+    try:
+        await resource.open()
     # Simulate doing work
-    print(f"  Working with {resource.name}...")
-    await asyncio.sleep(1.0)  # This will be interrupted
-    
-    print(f"  Work complete with {resource.name}")
+        print(f"  Working with {resource.name}...")
+        await asyncio.sleep(1.0)  # This will be interrupted
+        
+        print(f"  Work complete with {resource.name}")
     # TODO: Make sure close() is called even on cancellation
+    except asyncio.CancelledError:
+        raise
+    finally:
+        await resource.close()

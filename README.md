@@ -100,6 +100,10 @@ async def run_concurrent():
 - [Python asyncio docs](https://docs.python.org/3/library/asyncio.html)
 - [PEP 492 - async/await](https://www.python.org/dev/peps/pep-0492/)
 
+## Solutions
+
+Exercises with solutions are available under [solutions](https://github.com/martianlantern/asyncio_puzzles/tree/solutions) branch
+
 ## 🤝 Contributing - Adding New Puzzles
 
 Want to add a new puzzle? Follow this structure:
